@@ -1,0 +1,24 @@
+import axios from 'axios';
+
+const API_BASE = 'https://api.thecatapi.com/v1';
+
+async function GetAllBreeds() {
+  const response = await axios(`${API_BASE}/breeds`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  return response;
+}
+
+async function GetCatBreed(id) {
+  const response = await axios(`${API_BASE}/breeds/${id}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  return response;
+}
+
+export default {
+  GetAllBreeds,
+  GetCatBreed,
+};
