@@ -1,29 +1,51 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld />
   </div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Lifespan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="breed in breeds" v-bind:key="breed.id">
+        <td>
+          <router-link :to="{name: 'CatDetails', params: { id: breed.id }}">Edit</router-link> |
+        </td>
+        <td>{{ breed.id }}</td>
+        <td>{{ breed.name }}</td>
+        <td>{{ breed.image && breed.image.url }}</td>
+        <td>{{ breed.life_span }}</td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloI18n.vue';
 import catServices from '../services/cats.services';
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
+  },
+  data() {
+    return {
+      breeds: [],
+    };
   },
   methods: {
     async fetchData() {
-      // Will be implemented next
       const breeds = await catServices.GetAllBreeds();
-      console.log(breeds);
+      this.breeds = breeds.data;
     },
   },
-  async mounted() {
-    await this.fetchData();
+  mounted() {
+    this.fetchData();
   },
 };
 </script>
