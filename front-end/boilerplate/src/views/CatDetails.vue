@@ -1,8 +1,7 @@
 <template>
   <div v-if="breed">
-    <a-card hoverable style="width: 300px">
+    <a-card hoverable style="width: 300px;">
       <template #cover>
-        <!-- TODO: check carousel -->
         <a-carousel arrows>
           <template #prevArrow>
             <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
@@ -34,10 +33,9 @@
           <pushpin-outlined key="pushpin" />
         </div>
       </template>
-      <a-card-meta v-bind:title="breed.name" v-bind:description="breed.description">
-        <!-- <template #avatar>
-          <a-avatar src="https://joeschmoe.io/api/v1/random" />
-        </template> -->
+      <a-card-meta
+        v-bind:title="breed.name"
+        v-bind:description="breed.description">
       </a-card-meta>
     </a-card>
     <HereMap v-if="jsonData" :center="center" :jsonData="jsonData" :origin="origin" />
@@ -108,3 +106,32 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* For demo */
+.ant-carousel :deep(.slick-slide) {
+  height: 220px;
+  line-height: 220px;
+  overflow: hidden;
+}
+
+.ant-carousel :deep(.slick-arrow.custom-slick-arrow) {
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  color: #fff;
+  background-color: rgba(31, 45, 61, 0.11);
+  opacity: 0.3;
+  z-index: 1;
+}
+.ant-carousel :deep(.custom-slick-arrow:before) {
+  display: none;
+}
+.ant-carousel :deep(.custom-slick-arrow:hover) {
+  opacity: 0.5;
+}
+
+.ant-carousel :deep(.slick-slide h3) {
+  color: #fff;
+}
+</style>
