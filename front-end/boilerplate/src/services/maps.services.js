@@ -13,13 +13,13 @@ async function GetCountryCodes() {
   return response;
 }
 
-async function GetGeoJSONCountries() {
-  const response = await import('@/assets/countries.geo.json');
+async function GetGeoLocation(origin) {
+  const response = await axios(`https://geocoder.ls.hereapi.com/6.2/geocode.json?apiKey=Mh1Vdq-GLSsqSzLd08ljHef5hTxTK7P4a53BbjAZFjM&searchtext=${origin}`);
   return response;
 }
 
 export default {
   GetCountryCodes,
   GetGeoJSON,
-  GetGeoJSONCountries,
+  GetGeoLocation,
 };

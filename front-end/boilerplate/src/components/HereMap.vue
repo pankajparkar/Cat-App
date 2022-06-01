@@ -12,7 +12,7 @@ export default {
   props: {
     center: Object,
     jsonData: Object,
-    // center object { lat: 40.730610, lng: -73.935242 }
+    origin: String,
   },
   data() {
     return {
@@ -26,12 +26,13 @@ export default {
     // Initialize the platform object:
     const platform = new window.H.service.Platform({
       apikey: this.apikey,
+      q: this.origin,
     });
     this.platform = platform;
     this.initializeHereMap();
   },
   beforeUnmount() {
-    console.log(this.map.removeLayer());
+    this.map.removeLayer();
   },
   methods: {
     initializeHereMap() {
@@ -46,11 +47,8 @@ export default {
         mapContainer,
         maptypes.vector.normal.map,
         {
-          zoom: 5,
-          // center: {
-          //   lat: 52.522763341087874,
-          //   lng: 13.492702024100026,
-          // },
+          zoom: 3,
+          center: this.center,
           pixelRatio: window.devicePixelRatio || 1,
         },
       );
