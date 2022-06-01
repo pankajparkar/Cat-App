@@ -77,18 +77,18 @@ export default {
     };
   },
   methods: {
-    async fetchData() {
-      const breeds = await catServices.GetAllBreeds(this.query);
-      this.breeds = breeds.data;
+    async fetchData(searchValue) {
+      const breedsPromise = searchValue ?
+        catServices.SearchByBreedName(searchValue):
+        catServices.GetAllBreeds();
+      this.breeds =  (await breedsPromise).data;
     },
-    onSearch(searchValue) {
-      this.fetchData();
-      console.log('use value', searchValue);
-      // console.log('or use this.value', value.value);
+    onSearch() {
+      this.fetchData(this.query);
     },
   },
   mounted() {
-    this.fetchData();
+    this.fetchData(this.query);
   },
 };
 </script>

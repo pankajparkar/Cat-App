@@ -2,10 +2,18 @@ import axios from 'axios';
 
 const API_BASE = 'https://api.thecatapi.com/v1';
 
-async function GetAllBreeds(query) {
-  const url = !query ?
-    `${API_BASE}/breeds`:
-    `${API_BASE}/breeds/search?q=${query}`;
+async function SearchByBreedName(q) {
+  const url = `${API_BASE}/breeds/search`;
+  const response = await axios(url, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+    params: { q },
+  });
+  return response;
+}
+
+async function GetAllBreeds() {
+  const url = `${API_BASE}/breeds`
   const response = await axios(url, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -33,4 +41,5 @@ export default {
   GetAllBreeds,
   GetCatBreed,
   GetCatImages,
+  SearchByBreedName,
 };
