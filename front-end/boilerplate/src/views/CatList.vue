@@ -10,6 +10,7 @@
         <th>Name</th>
         <th>Image</th>
         <th>Lifespan</th>
+        <th>Origin</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
         <td>{{ breed.name }}</td>
         <td>{{ breed.image && breed.image.url }}</td>
         <td>{{ breed.life_span }}</td>
+        <td>{{ breed.origin }}</td>
       </tr>
     </tbody>
   </table>

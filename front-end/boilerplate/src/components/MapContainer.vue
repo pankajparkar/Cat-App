@@ -16,7 +16,7 @@ import 'ol/ol.css';
 export default {
   name: 'MapContainer',
   components: {},
-  props: {},
+  props: ['layer'],
   mounted() {
     // this is where we create the OpenLayers map
     const map = new Map({
@@ -27,6 +27,7 @@ export default {
         new TileLayer({
           source: new OSM(), // tiles are served by OpenStreetMap
         }),
+        this.layer,
       ],
       // the map view will initially show the whole world
       view: new View({

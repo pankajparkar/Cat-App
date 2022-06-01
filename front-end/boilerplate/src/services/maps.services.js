@@ -13,7 +13,13 @@ async function GetCountryCodes() {
   return response;
 }
 
+async function GetGeoJSONCountries() {
+  const response = await import('@/assets/countries.geo.json');
+  return response;
+}
+
 export default {
-  GetGeoJSON,
   GetCountryCodes,
+  GetGeoJSON,
+  GetGeoJSONCountries,
 };

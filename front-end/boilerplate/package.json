@@ -20,6 +20,7 @@
         "vue": "^3.0.0",
         "vue-i18n": "^9.1.0",
         "vue-router": "^4.0.0-0",
+        "vue3-openlayers": "^0.1.67",
         "vuex": "^4.0.0-0"
     },
     "devDependencies": {
