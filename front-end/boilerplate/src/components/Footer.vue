@@ -1,6 +1,9 @@
 <template>
     <div id="footer">
-        Footer
+      <div class="home">
+        Powered By:-
+        <img alt="Vue logo" src="@/assets/logo.png">
+      </div>
     </div>
 </template>
 

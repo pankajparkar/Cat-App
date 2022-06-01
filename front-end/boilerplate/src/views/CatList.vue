@@ -1,13 +1,18 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="@/assets/logo.png">
-  </div>
   <a-table :dataSource="breeds" :columns="columns">
-  <template #bodyCell="{ column, record }">
+    <template #bodyCell="{ column, record }">
       <template v-if="column.key === 'id'">
         <router-link :to="{name: 'CatDetails', params: { id: record.id }}">
           <edit-outlined key="edit" />
         </router-link>
+      </template>
+      <template v-if="column.key === 'image'">
+        <img
+          width="30"
+          height="30"
+          v-bind:alt="record.name"
+          v-bind:src="'https://cdn2.thecatapi.com/images/'+record.reference_image_id+'.jpg'"
+        />
       </template>
     </template>
   </a-table>
