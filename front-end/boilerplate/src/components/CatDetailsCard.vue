@@ -74,8 +74,10 @@ export default {
 
 <style scoped>
 .cat-details-card {
-    width: 300px;
+  width: 350px;
+  margin: 10px;
 }
+
 .ant-carousel :deep(.slick-slide) {
   height: 200px;
   line-height: 200px;

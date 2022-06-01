@@ -1,5 +1,5 @@
 <template>
-  <div v-if="breed">
+  <div v-if="breed" class="cat-details">
     <CatDetailsCard :breed="breed" />
     <HereMap v-if="jsonData" :center="center" :jsonData="jsonData" :origin="origin" />
   </div>
@@ -63,3 +63,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.cat-details {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+</style>

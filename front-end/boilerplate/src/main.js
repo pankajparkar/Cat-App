@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 
 import {
-  Card, Carousel, Layout, Table,
+  Card, Carousel, Layout, Table, Input,
 } from 'ant-design-vue';
 // import 'ant-design-vue/dist/antd.css';
 import App from './App.vue';
@@ -17,4 +17,5 @@ createApp(App)
   .use(Card)
   .use(Table)
   .use(Carousel)
+  .use(Input)
   .mount('#app');
