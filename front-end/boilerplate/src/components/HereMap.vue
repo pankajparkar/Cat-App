@@ -94,7 +94,6 @@ export default {
         ],
       });
       reader.parseData(obj);
-      console.log(obj);
 
       // Add layer which shows GeoJSON data on the map
       this.map.addLayer(reader.getLayer());

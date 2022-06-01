@@ -2,26 +2,25 @@
   <div v-if="breed">
     <a-card hoverable style="width: 300px">
       <template #cover>
-          <a-carousel arrows>
-            <template #prevArrow>
-              <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
-                <left-circle-outlined />
-              </div>
-            </template>
-            <template #nextArrow>
-              <div class="custom-slick-arrow" style="right: 10px">
-                <right-circle-outlined />
-              </div>
-            </template>
-            <div><h3>1</h3></div>
-            <div><h3>2</h3></div>
-            <div><h3>3</h3></div>
-            <div><h3>4</h3></div>
-          </a-carousel>
-        <!-- <img
-          v-bind:alt="breed.name"
-          v-bind:src="'https://cdn2.thecatapi.com/images/'+breed.reference_image_id+'.jpg'"
-        /> -->
+        <!-- TODO: check carousel -->
+        <a-carousel arrows>
+          <template #prevArrow>
+            <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
+              <left-circle-outlined />
+            </div>
+          </template>
+          <template #nextArrow>
+            <div class="custom-slick-arrow" style="right: 10px">
+              <right-circle-outlined />
+            </div>
+          </template>
+          <img
+            v-for="image in images"
+            v-bind:key="image.id"
+            v-bind:alt="breed.name"
+            v-bind:src="image.url"
+          />
+        </a-carousel>
       </template>
       <template #actions>
         <a v-bind:href="breed.wikipedia_url" target="_blank">
@@ -65,13 +64,19 @@ export default {
       breed: null,
       jsonData: null,
       center: null,
+      images: null,
     };
   },
   methods: {
+    async getImages() {
+      const catImages = await catServices.GetCatImages(this.id);
+      this.images = catImages.data;
+    },
     async fetchData() {
       const router = useRoute();
       const { id } = router.params;
       this.id = id;
+      this.getImages();
       const {
         breed, geo, countryCodes,
       } = await Promise.all([
@@ -83,16 +88,12 @@ export default {
         geo: data2.data,
         countryCodes: data3.default,
       }));
-      console.log('geo', geo, 'breed', breed, breed.country_code);
       const countryCode = countryCodes.find(
         (cc) => cc.alpha2 === breed.country_code || cc.name === breed.origin,
       );
-      console.log('countryCode', countryCode);
       const countryFeature = geo.features.find((feature) => feature.id === countryCode.alpha3);
-      console.log('countryFeature', countryFeature);
       this.jsonData = countryFeature;
       const position = await mapServices.GetGeoLocation(breed.origin);
-      console.log(this.jsonData, 'jsonData');
       this.breed = breed;
       this.origin = breed.origin;
       const { Latitude: lat, Longitude: lng } = position.data.Response.View[0].Result[0].Location.DisplayPosition;

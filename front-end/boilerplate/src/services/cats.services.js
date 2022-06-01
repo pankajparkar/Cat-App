@@ -18,7 +18,16 @@ async function GetCatBreed(id) {
   return response;
 }
 
+async function GetCatImages(id) {
+  const response = await axios(`${API_BASE}/images/search?breed_ids=${id}&limit=10&include_breeds=false`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  return response;
+}
+
 export default {
   GetAllBreeds,
   GetCatBreed,
+  GetCatImages,
 };
