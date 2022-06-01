@@ -1,43 +1,6 @@
 <template>
   <div v-if="breed">
-    <a-card hoverable style="width: 300px;">
-      <template #cover>
-        <a-carousel arrows>
-          <template #prevArrow>
-            <div class="custom-slick-arrow" style="left: 10px; z-index: 1">
-              <left-circle-outlined />
-            </div>
-          </template>
-          <template #nextArrow>
-            <div class="custom-slick-arrow" style="right: 10px">
-              <right-circle-outlined />
-            </div>
-          </template>
-          <img
-            v-for="image in images"
-            v-bind:key="image.id"
-            v-bind:alt="breed.name"
-            v-bind:src="image.url"
-          />
-        </a-carousel>
-      </template>
-      <template #actions>
-        <a v-bind:href="breed.wikipedia_url" target="_blank">
-          <link-outlined key="link" />
-        </a>
-        <div>
-          <thunderbolt-outlined key="thunderbolt" />
-          {{ breed.energy_level }} / 5
-        </div>
-        <div>
-          <pushpin-outlined key="pushpin" />
-        </div>
-      </template>
-      <a-card-meta
-        v-bind:title="breed.name"
-        v-bind:description="breed.description">
-      </a-card-meta>
-    </a-card>
+    <CatDetailsCard :breed="breed" />
     <HereMap v-if="jsonData" :center="center" :jsonData="jsonData" :origin="origin" />
   </div>
 </template>
@@ -46,6 +9,7 @@
 import { useRoute } from 'vue-router';
 import { ThunderboltOutlined, PushpinOutlined, LinkOutlined } from '@ant-design/icons-vue';
 import HereMap from '@/components/HereMap.vue';
+import CatDetailsCard from '@/components/CatDetailsCard.vue';
 import catServices from '@/services/cats.services';
 import mapServices from '@/services/maps.services';
 
@@ -56,6 +20,7 @@ export default {
     LinkOutlined,
     PushpinOutlined,
     HereMap,
+    CatDetailsCard,
   },
   data() {
     return {
@@ -66,15 +31,10 @@ export default {
     };
   },
   methods: {
-    async getImages() {
-      const catImages = await catServices.GetCatImages(this.id);
-      this.images = catImages.data;
-    },
     async fetchData() {
       const router = useRoute();
       const { id } = router.params;
       this.id = id;
-      this.getImages();
       const {
         breed, geo, countryCodes,
       } = await Promise.all([
@@ -95,10 +55,7 @@ export default {
       this.breed = breed;
       this.origin = breed.origin;
       const { Latitude: lat, Longitude: lng } = position.data.Response.View[0].Result[0].Location.DisplayPosition;
-      this.center = {
-        lat,
-        lng,
-      };
+      this.center = { lat, lng, };
     },
   },
   mounted() {
