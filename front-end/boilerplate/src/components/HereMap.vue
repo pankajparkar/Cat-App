@@ -87,7 +87,6 @@ export default {
         },
         disableLegacyMode: true,
       });
-      // debugger;
 
       // Start parsing the file
       const obj = toRaw({
@@ -96,7 +95,6 @@ export default {
           toRaw(this.jsonData),
         ],
       });
-      debugger;
       reader.parseData(obj);
       console.log(obj);
 
