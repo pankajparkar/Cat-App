@@ -63,32 +63,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-/* For demo */
-.ant-carousel :deep(.slick-slide) {
-  height: 220px;
-  line-height: 220px;
-  overflow: hidden;
-}
-
-.ant-carousel :deep(.slick-arrow.custom-slick-arrow) {
-  width: 25px;
-  height: 25px;
-  font-size: 25px;
-  color: #fff;
-  background-color: rgba(31, 45, 61, 0.11);
-  opacity: 0.3;
-  z-index: 1;
-}
-.ant-carousel :deep(.custom-slick-arrow:before) {
-  display: none;
-}
-.ant-carousel :deep(.custom-slick-arrow:hover) {
-  opacity: 0.5;
-}
-
-.ant-carousel :deep(.slick-slide h3) {
-  color: #fff;
-}
-</style>

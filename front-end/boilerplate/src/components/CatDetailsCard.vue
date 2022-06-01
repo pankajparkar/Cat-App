@@ -77,8 +77,8 @@ export default {
     width: 300px;
 }
 .ant-carousel :deep(.slick-slide) {
-  height: 220px;
-  line-height: 220px;
+  height: 200px;
+  line-height: 200px;
   overflow: hidden;
 }
 
