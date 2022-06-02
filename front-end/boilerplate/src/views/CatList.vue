@@ -49,6 +49,7 @@ export default {
           title: 'Breed Name',
           dataIndex: 'name',
           key: 'name',
+          defaultSortOrder: 'ascend',
           sorter: (a, b) => a.name.localeCompare(b.name),
         },
         {
