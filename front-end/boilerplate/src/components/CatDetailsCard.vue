@@ -40,7 +40,10 @@
 </template>
 
 <script>
-import { ThunderboltOutlined, PushpinOutlined, LinkOutlined } from '@ant-design/icons-vue';
+import {
+  ThunderboltOutlined, PushpinOutlined, LinkOutlined,
+  LeftCircleOutlined, RightCircleOutlined,
+} from '@ant-design/icons-vue';
 import HereMap from '@/components/HereMap.vue';
 import catServices from '@/services/cats.services';
 
@@ -59,6 +62,8 @@ export default {
     LinkOutlined,
     PushpinOutlined,
     HereMap,
+    LeftCircleOutlined,
+    RightCircleOutlined,
   },
   methods: {
     async getImages(id) {

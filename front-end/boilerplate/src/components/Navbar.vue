@@ -1,8 +1,13 @@
 <template>
-    <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
-    </div>
+    <a-layout-header class="navbar">
+        <span class="app-name">
+            <router-link to="/">The Cat App</router-link>
+        </span>
+        <div id="nav">
+            <router-link to="/">Breeds</router-link> |
+            <router-link to="/about">About</router-link>
+        </div>
+    </a-layout-header>
 </template>
 
 <script>
@@ -16,14 +21,26 @@ export default {
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-#nav {
-    a {
+.navbar {
+    display: flex;
+    padding: 0 20px;
+    .app-name {
+        font-size: 20px;
         font-weight: bold;
-        color: #2c3e50;
+    }
+    #nav {
+        display: flex;
+        margin-left: 20px;
+        a {
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 0 10px;
 
-        &.router-link-exact-active {
-            color: #42b983;
+            &.router-link-exact-active {
+                color: #42b983;
+            }
         }
     }
 }
+
 </style>
