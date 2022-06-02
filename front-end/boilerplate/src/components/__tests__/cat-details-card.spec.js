@@ -1,10 +1,12 @@
 import { shallowMount } from '@vue/test-utils';
-import HelloWorld from '@/components/HelloWorld.vue';
+import CatDetailsCard from '@/components/CatDetailsCard.vue';
 
 describe('CatDetailsCard.vue', () => {
   it('renders props.msg when passed', () => {
-    const msg = 'new message';
-    const wrapper = shallowMount(HelloWorld, {
+    const breed = {
+      
+    };
+    const wrapper = shallowMount(CatDetailsCard, {
       props: { msg },
     });
     expect(wrapper.text()).toMatch(msg);

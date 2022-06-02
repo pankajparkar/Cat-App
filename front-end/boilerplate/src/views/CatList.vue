@@ -9,14 +9,14 @@
       :allowClear="true"
       @search="onSearch"
     />
-    <a-table :dataSource="breeds" :columns="columns" class="breeds-grid">
+    <a-table :dataSource="breeds" :columns="columns" :loading="loading" class="breeds-grid">
       <template #bodyCell="{ column, record }">
-        <template v-if="column.key === 'id'">
+        <template v-if="column.dataIndex === 'id'">
           <router-link :to="{name: 'CatDetails', params: { id: record.id }}">
             <edit-outlined key="edit" />
           </router-link>
         </template>
-        <template v-if="column.key === 'image'">
+        <template v-if="column.dataIndex === 'image'">
           <img
             width="30"
             height="30"
@@ -68,14 +68,19 @@ export default {
       ],
       breeds: [],
       query: '',
+      loading: false,
     };
   },
   methods: {
     async fetchData(searchValue) {
+      this.loading = true;
+      this.breeds = [];
       const breedsPromise = searchValue ?
         catServices.SearchByBreedName(searchValue):
         catServices.GetAllBreeds();
       this.breeds =  (await breedsPromise).data;
+      this.loading = false;
+      this.$forceUpdate();
     },
     onSearch() {
       this.fetchData(this.query);
