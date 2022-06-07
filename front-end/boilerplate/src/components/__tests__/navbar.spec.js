@@ -1,12 +1,19 @@
 import { shallowMount } from '@vue/test-utils';
-import HelloWorld from '@/components/HelloWorld.vue';
+import Navbar from '@/components/Navbar.vue';
 
 describe('CatDetailsCard.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message';
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg },
-    });
-    expect(wrapper.text()).toMatch(msg);
+  it('renders router link on navbar', () => {
+    const wrapper = shallowMount(Navbar);
+
+    expect(wrapper.findAll('router-link').length).toBe(3);
+    expect(wrapper.findAll('#nav router-link').length).toBe(2);
+    expect(wrapper.findAll('.app-name router-link').length).toBe(1);
+  });
+
+  // TODO: fill test
+  it('should navigate to appropriate route', () => {
+    const wrapper = shallowMount(Navbar);
+
+    expect(wrapper.findAll('.app-name router-link').length).toBe(1);
   });
 });

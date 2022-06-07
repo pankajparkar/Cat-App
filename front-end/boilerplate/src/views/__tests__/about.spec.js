@@ -1,12 +1,10 @@
 import { shallowMount } from '@vue/test-utils';
-import HelloWorld from '@/components/HelloWorld.vue';
+import About from '@/views/About.vue';
 
 describe('About.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message';
-    const wrapper = shallowMount(HelloWorld, {
-      props: { msg },
-    });
-    expect(wrapper.text()).toMatch(msg);
+  it('renders about page', () => {
+    const wrapper = shallowMount(About);
+    
+    expect(wrapper.text()).toContain('about');
   });
 });
