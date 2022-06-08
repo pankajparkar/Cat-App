@@ -75,10 +75,10 @@ export default {
     async fetchData(searchValue) {
       this.loading = true;
       this.breeds = [];
-      const breedsPromise = searchValue ?
-        catServices.SearchByBreedName(searchValue):
-        catServices.GetAllBreeds();
-      this.breeds =  (await breedsPromise).data;
+      const breedsPromise = searchValue
+        ? catServices.SearchByBreedName(searchValue)
+        : catServices.GetAllBreeds();
+      this.breeds = (await breedsPromise).data;
       this.loading = false;
       this.$forceUpdate();
     },
@@ -94,12 +94,10 @@ export default {
 
 <style scoped>
 .cat-list {
-  
 }
 .cat-list .search-input {
   margin-bottom: 20px;
 }
 .cat-list .breeds-grid {
-  
 }
 </style>

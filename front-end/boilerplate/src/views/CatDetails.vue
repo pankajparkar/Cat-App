@@ -1,13 +1,19 @@
 <template>
-  <div v-if="breed" class="cat-details">
-    <CatDetailsCard :breed="breed" />
-    <HereMap v-if="jsonData" :center="center" :jsonData="jsonData" :origin="origin" />
+  <template v-if="breed">
+    <h1 class="breed-title">{{ breed.name }}</h1>
+    <div class="cat-details">
+      <CatDetailsCard :breed="breed" />
+      <HereMap v-if="jsonData" :center="center" :jsonData="jsonData" :origin="origin" />
+    </div>
+  </template>
+  <div v-else class="loading">
+    <LoadingOutlined />
   </div>
 </template>
 
 <script>
 import { useRoute } from 'vue-router';
-import { ThunderboltOutlined, PushpinOutlined, LinkOutlined } from '@ant-design/icons-vue';
+import { LoadingOutlined } from '@ant-design/icons-vue';
 import HereMap from '@/components/HereMap.vue';
 import CatDetailsCard from '@/components/CatDetailsCard.vue';
 import catServices from '@/services/cats.services';
@@ -16,11 +22,9 @@ import mapServices from '@/services/maps.services';
 export default {
   name: 'CatDetails',
   components: {
-    ThunderboltOutlined,
-    LinkOutlined,
-    PushpinOutlined,
     HereMap,
     CatDetailsCard,
+    LoadingOutlined,
   },
   data() {
     return {
@@ -54,8 +58,13 @@ export default {
       const position = await mapServices.GetGeoLocation(breed.origin);
       this.breed = breed;
       this.origin = breed.origin;
-      const { Latitude: lat, Longitude: lng } = position.data.Response.View[0].Result[0].Location.DisplayPosition;
-      this.center = { lat, lng, };
+      const {
+        Latitude: lat, Longitude: lng,
+      } = position.data.Response.View[0].Result[0].Location.DisplayPosition;
+      this.center = {
+        lat,
+        lng,
+      };
     },
   },
   mounted() {
@@ -70,6 +79,15 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 50px;
+}
+.breed-title {
+  margin: 16px 0;
+}
+.loading {
+  align-items: center;
+  display: flex;
+  font-size: 50px;
+  justify-content: center;
+  height: 100vh;
 }
 </style>

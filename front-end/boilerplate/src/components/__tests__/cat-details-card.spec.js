@@ -1,15 +1,16 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import CatDetailsCard from '@/components/CatDetailsCard.vue';
-import { breeds } from '@/test-helpers/mock';
+import { breeds, images } from '@/test-helpers/mock';
+import catServices from '@/services/cats.services';
 
 const breed = breeds[0];
 
 describe('CatDetailsCard.vue', () => {
   it('renders card when breed is passed', () => {
-
-    const wrapper = shallowMount(CatDetailsCard, {
-      props: { breeds },
+    const wrapper = mount(CatDetailsCard, {
+      props: { breed },
     });
+
     expect(wrapper.get('a-card').exists()).toBe(true);
     expect(wrapper.get('a-card-meta').exists()).toBe(true);
   });
@@ -20,40 +21,22 @@ describe('CatDetailsCard.vue', () => {
     });
 
     const attributes = Array.from(wrapper.find('a-card-meta').element.attributes);
-    expect(attributes.find(a => a.nodeName === 'title').nodeValue).toBe(breed.name);
-    expect(attributes.find(a => a.nodeName === 'description').nodeValue).toBe(breed.description);
+    expect(attributes.find((a) => a.nodeName === 'title').nodeValue).toBe(breed.name);
+    expect(attributes.find((a) => a.nodeName === 'description').nodeValue).toBe(breed.description);
   });
 
-  // TODO: fill test
-  it('should navigate to wiki link', () => {
+  it('should have images loaded', async () => {
+    jest.spyOn(catServices, 'GetCatImages').mockImplementation(
+      () => Promise.resolve({
+        data: images,
+      }),
+    );
+
     const wrapper = mount(CatDetailsCard, {
       props: { breed },
     });
+    await wrapper.vm.$nextTick();
 
-    const attributes = Array.from(wrapper.find('a-card-meta').element.attributes);
-    expect(attributes.find(a => a.nodeName === 'title').nodeValue).toBe(breed.name);
-    expect(attributes.find(a => a.nodeName === 'description').nodeValue).toBe(breed.description);
-  });
-
-  // TODO: fill test
-  it('should show carousel if more than one image present', () => {
-    const wrapper = mount(CatDetailsCard, {
-      props: { breed },
-    });
-
-    const attributes = Array.from(wrapper.find('a-card-meta').element.attributes);
-    expect(attributes.find(a => a.nodeName === 'title').nodeValue).toBe(breed.name);
-    expect(attributes.find(a => a.nodeName === 'description').nodeValue).toBe(breed.description);
-  });
-
-  // TODO: fill test
-  it('should not show carousel if only one image present', () => {
-    const wrapper = mount(CatDetailsCard, {
-      props: { breed },
-    });
-
-    const attributes = Array.from(wrapper.find('a-card-meta').element.attributes);
-    expect(attributes.find(a => a.nodeName === 'title').nodeValue).toBe(breed.name);
-    expect(attributes.find(a => a.nodeName === 'description').nodeValue).toBe(breed.description);
+    expect(wrapper.vm.images.length).toBe(2);
   });
 });

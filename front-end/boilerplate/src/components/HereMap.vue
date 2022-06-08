@@ -104,10 +104,10 @@ export default {
 
 <style scoped>
 #map {
-  width: 60vw;
+  background-color: #ccc;
+  margin: 10px;
   min-width: 360px;
   text-align: center;
-  margin: 5% auto;
-  background-color: #ccc;
+  width: 60vw;
 }
 </style>

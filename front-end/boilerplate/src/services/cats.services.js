@@ -13,7 +13,7 @@ async function SearchByBreedName(q) {
 }
 
 async function GetAllBreeds() {
-  const url = `${API_BASE}/breeds`
+  const url = `${API_BASE}/breeds`;
   const response = await axios(url, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },

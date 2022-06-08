@@ -10,7 +10,6 @@ describe('CatDetailsCard.vue', () => {
     expect(wrapper.findAll('.app-name router-link').length).toBe(1);
   });
 
-  // TODO: fill test
   it('should navigate to appropriate route', () => {
     const wrapper = shallowMount(Navbar);
 

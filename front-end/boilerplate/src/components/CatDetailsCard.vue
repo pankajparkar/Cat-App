@@ -44,13 +44,12 @@ import {
   ThunderboltOutlined, PushpinOutlined, LinkOutlined,
   LeftCircleOutlined, RightCircleOutlined,
 } from '@ant-design/icons-vue';
-import HereMap from '@/components/HereMap.vue';
 import catServices from '@/services/cats.services';
 
 export default {
   name: 'CatDetailsCard',
   props: {
-      breed: Object,
+    breed: Object,
   },
   data() {
     return {
@@ -61,7 +60,6 @@ export default {
     ThunderboltOutlined,
     LinkOutlined,
     PushpinOutlined,
-    HereMap,
     LeftCircleOutlined,
     RightCircleOutlined,
   },
