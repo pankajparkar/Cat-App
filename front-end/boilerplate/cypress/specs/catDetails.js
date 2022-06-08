@@ -2,11 +2,11 @@ describe('Cat Details Page', () => {
   it('Visits details page', () => {
     // given
     cy.visit('/');
-    cy.wait(5000);
+    cy.wait(500);
     cy.get('.ant-table-tbody .ant-table-cell a').first().click();
 
     // when
-    cy.wait(5000);
+    cy.wait(500);
 
     // then
     cy.contains('.breed-title').should('not.exist');
@@ -21,11 +21,11 @@ describe('Cat Details Page', () => {
   it('Navigation to wiki page', () => {
     // given
     cy.visit('/');
-    cy.wait(5000);
+    cy.wait(500);
     cy.get('.ant-table-tbody .ant-table-cell a').first().click();
 
     // when
-    cy.wait(5000);
+    cy.wait(500);
 
     // then
     cy.get('.ant-card-actions a')
