@@ -23,11 +23,17 @@ export default {
 </script>
 
 <style lang="scss">
+:root {
+  --text-color: #2c3e50;
+  --white: #ffffff;
+  --bg-color: #cccccc;
+  --highlight-color: #42b983;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--text-color);
 }
 </style>

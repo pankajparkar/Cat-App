@@ -90,8 +90,8 @@ export default {
 .ant-carousel :deep(.slick-arrow.custom-slick-arrow) {
   width: 25px;
   height: 25px;
-  font-size: 25px;
-  color: #fff;
+  font-size: 1.5rem;
+  color: var(--white);
   background-color: rgba(31, 45, 61, 0.11);
   opacity: 0.3;
   z-index: 1;
@@ -111,6 +111,6 @@ export default {
 }
 
 .ant-carousel :deep(.slick-slide h3) {
-  color: #fff;
+  color: var(--white);
 }
 </style>

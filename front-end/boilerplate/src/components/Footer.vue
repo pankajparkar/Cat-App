@@ -1,10 +1,8 @@
 <template>
   <a-layout-footer>
     <div id="footer">
-      <div class="home">
-        Powered By:-
-        <img alt="Vue logo" src="@/assets/logo.png">
-      </div>
+      Powered By:-
+      <img alt="Vue logo" src="@/assets/logo.png">
     </div>
   </a-layout-footer>
 </template>

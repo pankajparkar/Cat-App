@@ -104,7 +104,7 @@ export default {
 
 <style scoped>
 #map {
-  background-color: #ccc;
+  background-color: var(--bg-color);
   margin: 10px;
   min-width: 360px;
   text-align: center;

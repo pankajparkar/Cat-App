@@ -3,7 +3,7 @@ import CatList from '@/views/CatList.vue';
 
 const routes = [
   {
-    path: '/',
+    path: '/cat/list',
     name: 'Home',
     component: CatList,
   },
@@ -16,6 +16,10 @@ const routes = [
     path: '/about',
     name: 'About',
     component: () => import('@/views/About.vue'),
+  },
+  {
+    path: '',
+    redirect: '/cat/list',
   },
 ];
 

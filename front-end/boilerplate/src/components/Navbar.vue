@@ -4,7 +4,7 @@
             <router-link to="/">The Cat App</router-link>
         </span>
         <div id="nav">
-            <router-link to="/">Breeds</router-link> |
+            <router-link to="/cat/list">Cats</router-link> |
             <router-link to="/about">About</router-link>
         </div>
     </a-layout-header>
@@ -25,7 +25,7 @@ export default {
     display: flex;
     padding: 0 20px;
     .app-name {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: bold;
     }
     #nav {
@@ -33,11 +33,11 @@ export default {
         margin-left: 20px;
         a {
             font-weight: bold;
-            color: #2c3e50;
+            color: var(--text-color);
             padding: 0 10px;
 
             &.router-link-exact-active {
-                color: #42b983;
+                color: var(--highlight-color);
             }
         }
     }

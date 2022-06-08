@@ -86,7 +86,7 @@ export default {
 .loading {
   align-items: center;
   display: flex;
-  font-size: 50px;
+  font-size: 3rem;
   justify-content: center;
   height: 100vh;
 }
