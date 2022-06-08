@@ -2,23 +2,33 @@ import axios from 'axios';
 
 const API_BASE = 'https://api.thecatapi.com/v1';
 
+// TODO: there should be caching invalidation
+const caching = {};
+
 async function SearchByBreedName(q) {
   const url = `${API_BASE}/breeds/search`;
-  const response = await axios(url, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-    params: { q },
-  });
-  return response;
+  if (!caching[url]) {
+    const response = await axios(url, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      params: { q },
+    });
+    caching[url] = response;
+  }
+
+  return caching[url];
 }
 
 async function GetAllBreeds() {
   const url = `${API_BASE}/breeds`;
-  const response = await axios(url, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-  });
-  return response;
+  if (!caching[url]) {
+    const response = await axios(url, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    caching[url] = response;
+  }
+  return caching[url];
 }
 
 async function GetCatBreed(id) {

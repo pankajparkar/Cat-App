@@ -1,5 +1,3 @@
-// https://docs.cypress.io/api/introduction/api.html
-
 describe('Cat List Page', () => {
   it('Visits the app root url', () => {
     // given
@@ -15,7 +13,6 @@ describe('Cat List Page', () => {
     cy.get('.ant-input-search input').should('have.value', '');
     cy.get('.ant-table-content table tbody').find('tr').should('have.length', 10);
     cy.contains('#footer', 'Powered By:-');
-    cy.get('#footer img').first().should('have.attr', 'alt', 'Vue logo');
   });
 
   it('Input should search by breed name', () => {
